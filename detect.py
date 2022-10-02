@@ -231,8 +231,11 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
+
+    with open("./runs/detect/exp/img.png", "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
     
-    return {"image": str(imgs[0]), "item_dict":items_dict}
+    return {"image":str(encoded_string), "item_dict":items_dict}
 
 
 

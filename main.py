@@ -8,9 +8,6 @@ import shutil
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
-def health_check():
-    return "Health Check"
 
 @app.route('/scoreimgs', methods=['POST'])
 def get_score():                    
@@ -24,9 +21,13 @@ def get_score():
     for f in upload:
         os.remove(f)
     shutil.rmtree("./runs/detect", ignore_errors=False)
-    print("------")
-    print(results)
+
+    # Reading file
+    # with open("./img.png", "wb") as fh:
+    #     fh.write(base64.b64decode(results['image'][1:-1]))
+   
     return results
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
-
