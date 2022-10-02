@@ -8,6 +8,9 @@ import shutil
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def health_check():
+    return "Health Check"
 
 @app.route('/scoreimgs', methods=['POST'])
 def get_score():                    
